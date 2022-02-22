@@ -1,0 +1,25 @@
+{
+  "name": "wp-doc-contrib",
+  "version": "0.0.2",
+  "description": "Users can create documentation pages like another content and open it in a popup with a click on the admin bar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node public/src/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3615Yeye/wp-doc-contrib.git"
+  },
+  "author": "Ronan Le Pivaingt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3615Yeye/wp-doc-contrib/issues"
+  },
+  "homepage": "https://github.com/3615Yeye/wp-doc-contrib#readme",
+  "dependencies": {
+    "esbuild": "^0.14.23",
+    "esbuild-plugin-sass": "^1.0.1",
+    "winbox": "^0.2.1"
+  }
+}

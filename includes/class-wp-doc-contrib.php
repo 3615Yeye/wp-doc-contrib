@@ -156,7 +156,9 @@ class Wp_Doc_Contrib {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
+		$this->loader->add_action( 'init', $plugin_admin, 'custom_post_types' );
+		$this->loader->add_action( 'wp_ajax_wp_doc_list', $plugin_admin, 'ajax_endpoint' );
+		$this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'admin_bar_button', 9999 );
 	}
 
 	/**

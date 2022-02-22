@@ -57,7 +57,7 @@ class Wp_Doc_Contrib_Public {
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.2
 	 */
 	public function enqueue_styles() {
 
@@ -72,15 +72,16 @@ class Wp_Doc_Contrib_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-doc-contrib-public.css', array(), $this->version, 'all' );
+        if (is_user_logged_in()) {
+            wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'dist/wp-doc-contrib-admin.css', array(), $this->version, 'all' );
+        }
 
 	}
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.2
 	 */
 	public function enqueue_scripts() {
 
@@ -96,8 +97,14 @@ class Wp_Doc_Contrib_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-doc-contrib-public.js', array( 'jquery' ), $this->version, false );
+        if (is_user_logged_in()) {
+            wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'dist/wp-doc-contrib-admin.js', array( 'jquery' ), $this->version, false );
 
+            wp_localize_script( $this->plugin_name, 'wpDocContrib', [
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'nonce' => wp_create_nonce( 'wp-doc-contrib' ),
+            ]);
+        }
 	}
 
 }
